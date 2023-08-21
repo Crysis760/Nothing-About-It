@@ -26,3 +26,4 @@
 
 # Virtual environment
 .venv
+.idea
