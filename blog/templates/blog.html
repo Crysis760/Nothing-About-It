@@ -5,7 +5,9 @@
 
 {% block content %}
     {% for post in posts %}
-        <p>{{ post.title }}</p>
-        <p>{{ post.text }}</p>
+        <div class="modal-lg bg-dark m-md-4 p-md-4">
+            <h2><strong>{{ post.title }}</strong></h2>
+            <p>{{ post.text }}</p>
+        </div>
     {% endfor %}
 {% endblock %}
