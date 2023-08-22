@@ -1,7 +1,7 @@
 from blog import app, db
 from flask import render_template, redirect, url_for, flash
 from blog.models import Post, User
-from blog.forms import RegisterForm, LoginForm
+from blog.forms import RegisterForm, LoginForm, PostForm
 from flask_login import login_user, logout_user, login_required
 
 
@@ -16,6 +16,22 @@ def home_page():
 def blog_page():
     posts = Post.query.all()
     return render_template('blog.html', posts=posts)
+
+
+@app.route('/new-post', methods=['GET','POST'])
+@login_required
+def new_post_page():
+    form = PostForm()
+    if form.validate_on_submit():
+        post_to_publish = Post(title=form.title.data,
+                               text=form.text.data)
+        db.session.add(post_to_publish)
+        db.session.commit()
+        return redirect(url_for('blog_page'))
+    # if form.errors != {}:  # If no errors from validations
+    #     for err_msg in form.errors.values():
+    #         flash(f"There is a problem: {err_msg}", category='danger')
+    return render_template('new-post.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
