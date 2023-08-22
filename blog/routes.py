@@ -1,7 +1,7 @@
-from market import app, db
+from blog import app, db
 from flask import render_template, redirect, url_for, flash
-from market.models import Item, User
-from market.forms import RegisterForm, LoginForm
+from blog.models import Post, User
+from blog.forms import RegisterForm, LoginForm
 from flask_login import login_user, logout_user, login_required
 
 
@@ -11,11 +11,11 @@ def home_page():
     return render_template('home.html')
 
 
-@app.route('/market')
+@app.route('/blog')
 @login_required
-def market_page():
-    items = Item.query.all()
-    return render_template('market.html', items=items)
+def blog_page():
+    posts = Post.query.all()
+    return render_template('blog.html', posts=posts)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -29,7 +29,7 @@ def register_page():
         db.session.commit()
         login_user(user_to_create)
         flash(f'Your account has been created. You are now logged in as {user_to_create.username}', category='success')
-        return redirect(url_for('market_page'))
+        return redirect(url_for('blog_page'))
     if form.errors != {}:  # If no errors from validations
         for err_msg in form.errors.values():
             flash(f"There is a problem: {err_msg}", category='danger')
@@ -46,7 +46,7 @@ def login_page():
         ):
             login_user(attempted_user)
             flash(f'You are logged in as: {attempted_user.username}', category='success')
-            return redirect(url_for('market_page'))
+            return redirect(url_for('blog_page'))
         else:
             flash('Username or password is incorrect', category='danger')
     return render_template('login.html', form=form)

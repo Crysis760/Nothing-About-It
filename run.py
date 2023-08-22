@@ -1,4 +1,4 @@
-from market import app
+from blog import app
 
 # Check for running run.py directly and not imported
 if __name__ == "__main__":

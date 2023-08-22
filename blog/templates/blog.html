@@ -1,35 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
-    Market | Nothing About It
+    Blog | Nothing About It
 {% endblock %}
 
 {% block content %}
-    <table class="table table-hover table-dark">
-            <thead>
-                <tr>
-                    <!-- columns here -->
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Barcode</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- rows here-->
-                {% for item in items %}
-                <tr>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.barcode }}</td>
-                    <td>{{ item.price }}$</td>
-                    <td>
-                        <button class="btn btn-outline btn-info">Info</button>
-                        <button class="btn btn-outline btn-success">Add to cart</button>
-                    </td>
-                </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
+    {% for post in posts %}
+        <p>{{ post.title }}</p>
+        <p>{{ post.text }}</p>
+    {% endfor %}
 {% endblock %}

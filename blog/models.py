@@ -1,4 +1,4 @@
-from market import db, login_manager, bcrypt
+from blog import db, login_manager, bcrypt
 from flask_login import UserMixin
 
 
@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(length=15), nullable=False, unique=True)
     email = db.Column(db.String(length=40), nullable=False, unique=True)
     password = db.Column(db.String(length=60), nullable=False)
-    items = db.relationship('Item', backref='owned_user', lazy=True)
+    items = db.relationship('Post', backref='owned_user', lazy=True)
 
     @property
     def password_hash(self):
@@ -26,13 +26,11 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password, attempted_password)
 
 
-class Item(db.Model):
+class Post(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(length=30), nullable=False, unique=True)
-    barcode = db.Column(db.String(length=12), nullable=False, unique=True)
-    price = db.Column(db.Integer(), nullable=False)
-    description = db.Column(db.String(length=1024), nullable=False, unique=True)
+    title = db.Column(db.String(length=30), nullable=False, unique=True)
+    text = db.Column(db.String(length=2048), nullable=False, unique=True)
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return f'Item({self.name})'
+        return f'Post({self.title})'
