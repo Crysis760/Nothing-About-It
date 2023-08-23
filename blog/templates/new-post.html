@@ -9,18 +9,18 @@
     <div class="container">
         <form method="POST" class="form-register" style="color:white">
         {{ form.hidden_tag() }}
-            <h1 class="h3 mb-3 font-weight-normal">
+            <h1 class="h3 font-weight-normal">
                 Post something new
             </h1>
             <br>
-            {{ form.title.label() }}
+            <h5> {{ form.title.label() }} </h5>
             {{ form.title(class="form-control", placeholder="Title") }}
 
-            {{ form.text.label() }}
+            <h5 class="mt-2"> {{ form.text.label() }} </h5>
             {{ form.text(class="form-control", placeholder="Write text here") }}
 
             <br>
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            {{ form.submit(class="btn btn-block w-25 btn-primary") }}
         </form>
     </div>
 </body>
