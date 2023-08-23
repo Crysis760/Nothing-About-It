@@ -6,7 +6,7 @@
 {% block content %}
 <body class="text-left">
     <br>
-    <div class="container">
+    <div class="container rounded-lg bg-dark m-4 p-4">
         <form method="POST" class="form-register" style="color:white">
         {{ form.hidden_tag() }}
             <h1 class="h3 font-weight-normal">
@@ -20,7 +20,7 @@
             {{ form.text(class="form-control", placeholder="Write text here") }}
 
             <br>
-            {{ form.submit(class="btn btn-block w-25 btn-primary") }}
+            {{ form.submit(class="btn btn-light") }}
         </form>
     </div>
 </body>
