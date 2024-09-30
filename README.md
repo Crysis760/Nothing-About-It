@@ -1,3 +1,3 @@
 # Welcome to my first web application
-## This is a blog on early stage of development
-I'll appreciate every advice for improvement of this site
+## This is a blog in early stage of development
+I'll appreciate any advice on improvements of this site
